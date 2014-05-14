@@ -1,9 +1,19 @@
-- Extract the files.
+# profilechange - Change profile ids for all Google Analytics Datasources on a particular client via the Klipfolio API# 
 
-- Edit config.json and enter in
--- the client id you want to change the GA profile id on.  
--- An administrative user account to sign in as to make this change. i.e. a user that has access to change the profile ids.  This can be the partner user id because the partner has super admin access to the client.
--- the profile id you want to change the data sources to use.
+## Running the script ##
 
-- run profile_change.exe
--- it will prompt you for the password for the user specified in the config file.
+- Extract the files from the profilechange.zip 
+
+- Edit config.json file with your credentials
+config.json
+``` javascript
+{
+	"client_id": "04689d15b8b9e18f8872de41d8d34f3b", //Public ID of the client that has the datasources that you would like to affect
+	"profile_id": "01234567", //Example Google Analytics profile id that starts with "ga:"
+	"username": "example@klipfolio.com", //Your Klipfolio Username
+	"verbose": "y", //set verbose to "y" to allow for detailed reporting and refreshing of datasources 
+}
+```
+
+- Double click profile_change.exe
+- Enter your password, and let the script run

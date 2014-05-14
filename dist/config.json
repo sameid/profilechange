@@ -1,6 +1,6 @@
 {
-    "client_id" : "924cc4f6b4b22279de4dc54656d2b2f7",
-    "profile_id" :"46932282",
-    "username" : "keely.davison1+test1@gmail.com",
+    "client_id" : "YOUR_CLIENT_ID",
+    "profile_id" :"YOUR_NEW_PROFILE_ID",
+    "username" : "YOUR_USERNAME",
     "verbose" : "y"
 }
