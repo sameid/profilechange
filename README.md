@@ -4,6 +4,7 @@ Change profile ids for all Google Analytics Datasources on a particular client v
 
 ## Running the script ##
 
+- Download [profilechange.zip](https://github.com/sameid/profilechange/raw/master/release/profilechange.zip)
 - Extract the files from the profilechange.zip 
 - Edit the config.json 
 

@@ -44,7 +44,7 @@ def put(req, data, headers, host=HOST):
     res = requests.put(host+req, auth=(user, pasw), data=json.dumps(data),headers=headers, verify=False )
     return res.json()
             
-def post(req, data, headers, host=HOST):
+def post(req, data=None, headers=None, host=HOST):
     res = requests.post(host+req, auth=(user,pasw), data=json.dumps(data),headers=headers,verify=False)  
     return res.json()
 
@@ -69,7 +69,7 @@ if b['meta']['success'] == True and b['meta']['status'] == 200:
             
             endpoint_url = parse_url(y, profile_id)
         
-            payload = {'properties': {'profile': profile_id, 'endpoint_url': endpoint_url, 'advancedQuery': endpoint_url}}
+            payload = {'properties': {'profile': profile_id, 'endpoint_url': endpoint_url, 'advancedQuery': endpoint_url, 'mode': 'Advanced'}}
             headers = {'content-type':'application/json'}
             r = put (req='/datasources/'+i['id']+'/properties', data=payload, headers=headers )
     
@@ -85,9 +85,3 @@ else:
     print ('Bad request was made:')
     print (b)
 raw_input('Press return key to exit ...')
-    
-
-    
-
-
-
