@@ -55,31 +55,33 @@ def pprint(data):
 
 print ('Retrieving datasources for ' + client_id + ' ...')
 b = get(req='/datasources?client_id=' + client_id)
+pprint(b)
 
 if b['meta']['success'] == True and b['meta']['status'] == 200:
     a = b['data']['datasources']
     print ('Changing profile IDs to ' + profile_id + ' ...')
     for i in a:
         ds = get(req='/datasources/'+i['id']+'?full=true')
-        if ds['data']['connector'] == 'google_analytics' :
+        if ds['data']['connector'] == 'google_analytics':
             try:
                 y = ds['data']['properties']['endpoint_url']
-            except KeyError:
-                break;
-            
-            endpoint_url = parse_url(y, profile_id)
+                endpoint_url = parse_url(y, profile_id)
         
-            payload = {'properties': {'profile': profile_id, 'endpoint_url': endpoint_url, 'advancedQuery': endpoint_url, 'mode': 'Advanced'}}
-            headers = {'content-type':'application/json'}
-            r = put (req='/datasources/'+i['id']+'/properties', data=payload, headers=headers )
+                payload = {'properties': {'profile': profile_id, 'endpoint_url': endpoint_url, 'advancedQuery': endpoint_url, 'mode': 'Advanced'}}
+                headers = {'content-type':'application/json'}
+                r = put (req='/datasources/'+i['id']+'/properties', data=payload, headers=headers )
     
-            if verbose == 'y':
-                print('*******************************************************************************************')
-                p = get(req='/datasources/' + i['id'] + '?full=true')
-                print p['data']['properties']['oauth_user_token']
-                pprint(post(req='/datasources/'+i['id'] +'/@/refresh'))
-                print('*******************************************************************************************')
+                if verbose == 'y':
+                    print('*******************************************************************************************')
+                    p = get(req='/datasources/' + i['id'] + '?full=true')
+                    print p['data']['properties']['oauth_user_token']
+                    pprint(post(req='/datasources/'+i['id'] +'/@/refresh'))
+                    print('*******************************************************************************************')
+            except KeyError:
+                print 'key error'
+                break;
 
+            
     print (' ... Done!')
 else:
     print ('Bad request was made:')
